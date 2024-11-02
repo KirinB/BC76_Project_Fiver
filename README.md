@@ -12,3 +12,5 @@ Một số thư viện cài đặt trong dự án:
 - React-icon
 - Redux-toolkit
 - Formik và Yup
+
+trang chủ - trang đăng nhập - quản lí người dùng - quản lí các công việc
