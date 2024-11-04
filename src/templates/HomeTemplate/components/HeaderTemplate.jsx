@@ -35,7 +35,12 @@ const HeaderTemplate = () => {
                 icon={<AiOutlineGlobal />}
               ></ButtonGhost>
               <ButtonGhost content={"Become a Seller"}></ButtonGhost>
-              <ButtonGhost content={"Sign in"}></ButtonGhost>
+              <ButtonGhost
+                onClick={() => {
+                  navigate(pathDefault.signIn);
+                }}
+                content={"Sign in"}
+              ></ButtonGhost>
               <ButtonOutline
                 onClick={() => {
                   navigate(pathDefault.signIn);

@@ -14,9 +14,14 @@ const SignIn = () => {
         {/* logo and back to homepage  */}
         <div className="flex justify-between items-center">
           <Icons.logo />
-          <div className="flex items-center">
-            <FaArrowLeftLong />
-            <Link to={pathDefault.homePage}>Go back</Link>
+          <div>
+            <Link
+              className="flex items-center space-x-2"
+              to={pathDefault.homePage}
+            >
+              <FaArrowLeftLong />
+              <span>Go back</span>
+            </Link>
           </div>
         </div>
         {/* form  */}

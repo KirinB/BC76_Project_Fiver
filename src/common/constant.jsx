@@ -101,3 +101,25 @@ export const listPopularServices = [
     bgColor: "#be5272",
   },
 ];
+
+export const dataPremium = [
+  {
+    title: "Dedicated hiring experts",
+    param:
+      "Count on an account manager to find you the right talent and see to your project's every need.",
+  },
+  {
+    title: "Satisfaction guarantee",
+    param:
+      "Order confidently, with guaranteed refunds for less-than-satisfactory deliveries.",
+  },
+  {
+    title: "Advanced management tools",
+    param: "Seamlessly integrate freelancers into your team and projects.",
+  },
+  {
+    title: "Flexible payment models",
+    param:
+      "Pay per project or opt for hourly rates to facilitate longer-term collaboration.",
+  },
+];
