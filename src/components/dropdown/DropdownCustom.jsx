@@ -1,11 +1,15 @@
 import { Dropdown, Space } from "antd";
 import React, { useState } from "react";
 import { DownOutlined, SmileOutlined } from "@ant-design/icons";
-const DropdownHeader = ({ buttonContent = "dropdown", items }) => {
+const DropdownCustom = ({
+  buttonContent = "dropdown",
+  items,
+  className = "",
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Dropdown
-      menu={{ items: [{ label: "abc" }] }}
+      menu={{ items: [{ label: "The function is not working yet" }] }}
       trigger={["click"]}
       open={isOpen}
     >
@@ -13,7 +17,7 @@ const DropdownHeader = ({ buttonContent = "dropdown", items }) => {
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-        className="font-semibold capitalize py-2 px-4 hover:bg-gray-100 rounded-md"
+        className={`font-semibold capitalize py-2 px-4 hover:bg-gray-100 rounded-md ${className}`}
       >
         {buttonContent}
         <span className="ml-2">
@@ -28,4 +32,4 @@ const DropdownHeader = ({ buttonContent = "dropdown", items }) => {
   );
 };
 
-export default DropdownHeader;
+export default DropdownCustom;

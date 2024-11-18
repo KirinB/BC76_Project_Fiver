@@ -267,7 +267,7 @@ const FooterTemplate = () => {
             />
             <ButtonGhost
               icon={<PiPersonArmsSpreadFill />}
-              className="text-xl text-[#74767e] hover:text-[#74767e] hover:bg-[#DBDBDD] !rounded-full !p-3"
+              className="text-xl border border-[#74767e] hover:border-transparent text-[#74767e] hover:text-blackSecond hover:bg-[#DBDBDD] !rounded-full !p-1 !px-2"
             />
           </ul>
         </div>
