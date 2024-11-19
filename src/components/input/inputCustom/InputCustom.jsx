@@ -7,11 +7,12 @@ const InputCustom = ({
   handleChange,
   handleBlur,
   name,
-  id,
+  id = "",
   value,
   error,
   touched,
   type = "text",
+  className = "",
 }) => {
   return (
     <div className="space-y-1">
@@ -19,6 +20,7 @@ const InputCustom = ({
         {labelContent}
       </label>
       <Input
+        className={`${className} py-2`}
         value={value}
         name={name}
         id={id}

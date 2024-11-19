@@ -56,3 +56,29 @@ export const ButtonPrimary = ({
     </button>
   );
 };
+export const ButtonGreen = ({
+  type = "button",
+  onClick,
+  content,
+  className = "",
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${className} py-4 rounded-md hover:bg-green-800 bg-green-600 duration-200`}
+      type={type}
+    >
+      {content}
+    </button>
+  );
+};
+export const ButtonIcon = ({ className = "", type = "button", icon }) => {
+  return (
+    <button
+      type={type}
+      className={`w-12 bg-white hover:bg-slate-300 duration-200 rounded-xl ${className}`}
+    >
+      <img src={icon} alt="" />
+    </button>
+  );
+};

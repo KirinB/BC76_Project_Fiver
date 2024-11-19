@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { createContext, Suspense } from "react";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import SearchJobs from "./pages/SearchJobs/SearchJobs";
-
+import SignInAdmin from "./pages/SignInAdmin/SignInAdmin";
 export const NotificationContext = createContext();
 
 const HomeTemplate = React.lazy(() => {
@@ -45,6 +45,10 @@ const arrRoutes = [
   {
     path: pathDefault.signIn,
     element: <SignIn />,
+  },
+  {
+    path: pathDefault.signInAdmin,
+    element: <SignInAdmin />,
   },
   {
     path: pathDefault.admin,

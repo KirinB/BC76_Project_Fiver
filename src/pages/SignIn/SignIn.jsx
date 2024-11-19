@@ -68,7 +68,7 @@ const SignIn = () => {
     },
   };
   return (
-    <div id="signIn" className="h-screen grid grid-cols-3 py-10">
+    <div className="h-screen grid grid-cols-3 py-10">
       <div className="col-span-2 h-full flex items-center">
         {/* animation  */}
         <Lottie options={defaultOptions} height={400} width={400} />
