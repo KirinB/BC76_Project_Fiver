@@ -45,7 +45,7 @@ const HeaderTemplate = () => {
       congViecService
         .getCongViecTheoTen(value)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           setListSearch(res.data.content);
           setIsOpenDropdown(true);
         })
@@ -57,10 +57,14 @@ const HeaderTemplate = () => {
 
   const itemListSearch = useMemo(() => {
     return listSearch.slice(0, 4).map((item) => {
+      // console.log(item);
       return {
         key: item.id,
         label: (
-          <div className="flex items-center">
+          <Link
+            to={`${pathDefault.product}?id=${item.id}`}
+            className="flex items-center"
+          >
             <img src={item.congViec.hinhAnh} className="w-16 h-16 mr-4" />
             <div>
               <h4 className="text-lg font-semibold">
@@ -68,7 +72,7 @@ const HeaderTemplate = () => {
               </h4>
               <p className="mt-2">Đánh giá :{item.congViec.danhGia}</p>
             </div>
-          </div>
+          </Link>
         ),
       };
     });

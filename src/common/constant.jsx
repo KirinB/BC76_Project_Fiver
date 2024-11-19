@@ -123,3 +123,58 @@ export const dataPremium = [
       "Pay per project or opt for hourly rates to facilitate longer-term collaboration.",
   },
 ];
+
+export const mockUpComment = [
+  {
+    author: "pureyco",
+    flag: "/US_flag.png",
+    region: "United States",
+    image: "/mockup_comment1.jpg",
+    rate: 4,
+    content: "Worked well with what he had. Happy with the results.",
+    price: "Up to US$50",
+    duration: "3 days",
+  },
+  {
+    author: "mshail4321",
+    flag: "/SA_flag.png",
+    region: "Saudi Arabia",
+    image: "/mockup_comment2.jpg",
+    rate: 3,
+    content: "lack of understanding with the details I have given.",
+    price: "Up to US$50",
+    duration: "3 days",
+  },
+  {
+    author: "itswutru",
+    flag: "/Net_flag.png",
+    region: "Netherlands",
+    image: "/mockup_comment3.png",
+    rate: 4,
+    content: "Worked well with what he had. Happy with the results.",
+    price: "Up to US$50",
+    duration: "3 days",
+  },
+  {
+    author: "trendy_bar",
+    flag: "/US_flag.png",
+    region: "United States",
+    image: "/mockup_comment4.jpg",
+    rate: 4,
+    content:
+      "The final images met my expectations and the delivery time was quick.",
+    price: "US$100-US$200",
+    duration: "3 days",
+  },
+  {
+    author: "mbermudez3",
+    flag: "/US_flag.png",
+    region: "United States",
+    image: "/mockup_comment5.jpg",
+    rate: 5,
+    content:
+      "Created a lot of revisions and delivered exactly what we were looking for!",
+    price: "Up to US$50",
+    duration: "1 day",
+  },
+];

@@ -1,11 +1,11 @@
-import { Pagination, Spin, Switch } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Pagination, Switch } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { congViecService } from "../../services/congViec.service";
 import CategoryNavbar from "../HomePage/components/CategoryNavbar";
 import DropdownCustom from "../../components/dropdown/DropdownCustom";
 import ItemSearchJob from "./ItemSearchJob";
+import LoadingCustom from "../../components/loading/LoadingCustom";
 
 const SearchJobs = () => {
   const [searchParams] = useSearchParams();
@@ -15,15 +15,17 @@ const SearchJobs = () => {
 
   useEffect(() => {
     if (!searchTerm) return;
+    setIsLoading(true);
     congViecService
       .getCongViecTheoTen(searchTerm)
       .then((res) => {
-        console.log(res.data.content);
+        // console.log(res.data.content);
         setListJobs(res.data.content);
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(true);
       });
   }, [searchTerm]);
 
@@ -33,9 +35,7 @@ const SearchJobs = () => {
 
       {isLoading ? (
         <div className="py-20 flex justify-center">
-          <Spin
-            indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}
-          ></Spin>
+          <LoadingCustom />
         </div>
       ) : (
         <div className="py-10 container">
@@ -90,6 +90,7 @@ const SearchJobs = () => {
                 return (
                   <ItemSearchJob
                     key={index}
+                    idProduct={item.id}
                     imgBg={item.congViec.hinhAnh}
                     imgAuthor={item.avatar}
                     author={item.tenNguoiTao}

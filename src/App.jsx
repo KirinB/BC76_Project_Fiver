@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { createContext, Suspense } from "react";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import SearchJobs from "./pages/SearchJobs/SearchJobs";
+import Product from "./pages/Product/Product";
 
 export const NotificationContext = createContext();
 
@@ -39,6 +40,10 @@ const arrRoutes = [
       {
         path: "/search-jobs",
         element: <SearchJobs />,
+      },
+      {
+        path: "/product",
+        element: <Product />,
       },
     ],
   },
