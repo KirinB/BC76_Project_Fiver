@@ -37,13 +37,13 @@ const AdminTemplate = () => {
     <Layout className="min-h-screen">
       <Sider
         width={250}
-        className="bg-orange-300 slider-content"
+        className="bg-slate-800 slider-content"
         trigger={null}
         collapsible
         collapsed={collapsed}
       >
         <div className="demo-logo-vertical h-20 flex items-center justify-center">
-          <Icons.logo />
+          <Icons.logo fill="white" />
         </div>
         <Menu
           mode="inline"

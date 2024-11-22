@@ -46,10 +46,10 @@ const SignInAdmin = () => {
     });
   useEffect(() => {
     if (user) {
-      if (user.user.role == "ADMIN") {
+      if (user.user.role === "ADMIN") {
         localStorage.setItem("userInfo", JSON.stringify(user));
+        // dispatch(handleUpdateUser(user.user));
         handleNotification("success", "Đăng nhập thành công", 1500);
-        dispatch(handleUpdateUser(user.user));
         setTimeout(() => {
           navigate(pathDefault.admin);
         }, 1500);
