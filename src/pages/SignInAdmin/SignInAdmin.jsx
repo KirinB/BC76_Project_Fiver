@@ -48,7 +48,7 @@ const SignInAdmin = () => {
     if (user) {
       if (user.user.role === "ADMIN") {
         localStorage.setItem("userInfo", JSON.stringify(user));
-        // dispatch(handleUpdateUser(user.user));
+        dispatch(handleUpdateUser(user));
         handleNotification("success", "Đăng nhập thành công", 1500);
         setTimeout(() => {
           navigate(pathDefault.admin);

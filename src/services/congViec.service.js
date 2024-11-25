@@ -7,7 +7,16 @@ export const congViecService = {
   getDanhSachCongViec: () => {
     return http.get("/cong-viec");
   },
-  postCongViec: (data) => {
-    return http.post("/cong-viec", data);
+  postCongViec: (data, token) => {
+    return http.post("/cong-viec", data, { headers: { token } });
+  },
+  deleteCongViec: (keyword, token) => {
+    return http.delete(`/cong-viec/${keyword}`, { headers: { token } });
+  },
+  getCongViec: (keyword) => {
+    return http.get(`/cong-viec/${keyword}`);
+  },
+  putCongViec: (keyword, data, token) => {
+    return http.put(`/cong-viec/${keyword}`, data, { headers: { token } });
   },
 };

@@ -6,31 +6,26 @@ import { Button } from "antd";
 import { NotificationContext } from "../../../../App";
 import { useSelector } from "react-redux";
 
-const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
+const FormAddJob = ({
+  handleCloseModal,
+  layDanhSachCongViec,
+  dataUser,
+  initialValues,
+}) => {
   const { handleNotification } = useContext(NotificationContext);
   const { values, handleSubmit, handleChange, handleBlur, errors, touched } =
     useFormik({
-      initialValues: {
-        id: 0,
-        tenCongViec: "",
-        danhGia: 0,
-        giaTien: 0,
-        nguoiTao: 0,
-        hinhAnh: "",
-        moTa: "",
-        maChiTietLoaiCongViec: 0,
-        moTaNgan: "",
-        saoCongViec: 0,
-      },
+      initialValues,
+      enableReinitialize: true,
       onSubmit: (values) => {
         console.log(values);
         congViecService
-          .postCongViec(values, dataUser.token)
+          .putCongViec(values.id, values, dataUser.token)
           .then((res) => {
             console.log(res);
+            handleNotification("success", "Sửa công việc thành công");
             layDanhSachCongViec();
             handleCloseModal();
-            handleNotification("success", "Thêm công việc thành công");
           })
           .catch((err) => {
             console.log(err);
@@ -39,7 +34,7 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
     });
 
   return (
-    <form action="" onSubmit={handleSubmit}>
+    <form action="" onSubmit={handleSubmit} className="space-y-3">
       <InputCustom
         id="nguoiTao"
         name="nguoiTao"

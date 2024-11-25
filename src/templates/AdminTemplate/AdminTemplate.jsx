@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  SmileOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { Avatar, Button, Dropdown, Layout, Menu, theme } from "antd";
 import Icons from "../../components/icon";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { pathDefault } from "../../common/path";
 const { Header, Sider, Content } = Layout;
 import "./AdminTemplate.scss";
+import { useSelector } from "react-redux";
 
 const AdminTemplate = () => {
   const location = useLocation();
@@ -19,7 +21,25 @@ const AdminTemplate = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
+  const { user } = useSelector((state) => state.userSlice);
+  const items = [
+    {
+      key: "1",
+      label: <Link>Thông tin cá nhân</Link>,
+    },
+    {
+      key: "2",
+      label: (
+        <Link
+          onClick={() => {
+            console.log("đăng xuất đây");
+          }}
+        >
+          Đăng xuất
+        </Link>
+      ),
+    },
+  ];
   useEffect(() => {
     //Kiem tra nguoi dung co dang nhap chua
     const dataString = localStorage.getItem("userInfo");
@@ -108,16 +128,31 @@ const AdminTemplate = () => {
             background: colorBgContainer,
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
+          <div className="flex justify-between items-center">
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
+            />
+            <div className="admin flex gap-1 items-center">
+              <p>
+                Xin chào,{" "}
+                <span className="font-semibold text-lg">{user.name}</span>
+              </p>
+              <Dropdown menu={{ items }}>
+                <Avatar
+                  size="large"
+                  icon={user.avatar ? user.avatar : <span>{user.name[0]}</span>}
+                  className="mx-5"
+                />
+              </Dropdown>
+            </div>
+          </div>
         </Header>
         <Content
           style={{

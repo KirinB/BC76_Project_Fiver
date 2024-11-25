@@ -27,7 +27,7 @@ const arrRoutes = [
   {
     path: pathDefault.homePage,
     element: (
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<div>ahihiihai</div>}>
         <HomeTemplate />
       </Suspense>
     ),
@@ -58,7 +58,7 @@ const arrRoutes = [
         index: true,
         element: (
           //trong fallback de mot component loading
-          <Suspense fallback={<></>}>
+          <Suspense fallback={<div>huhuhu</div>}>
             <ManagerUser />
           </Suspense>
         ),
@@ -66,14 +66,18 @@ const arrRoutes = [
       {
         path: "manager-user",
         element: (
-          <Suspense fallback={<></>}>
+          <Suspense fallback={<div>huhuhu</div>}>
             <ManagerUser />
           </Suspense>
         ),
       },
       {
         path: "manager-job",
-        element: <ManagerJob />,
+        element: (
+          <Suspense>
+            <ManagerJob />
+          </Suspense>
+        ),
       },
       {
         path: "manager-comment",
