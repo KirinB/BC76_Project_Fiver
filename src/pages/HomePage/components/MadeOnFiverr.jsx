@@ -73,12 +73,12 @@ const MadeOnFiverr = () => {
     });
   }, []);
   return (
-    <div className="space-y-10">
-      <h2 className="text-blackSecond text-5xl">Made on Fiverr</h2>
+    <div className="px-6 lg:px-0 space-y-10">
+      <h2 className="text-blackSecond text-4xl lg:text-5xl">Made on Fiverr</h2>
       <div ref={gridRef} className="grid">
         {dataProducts.map((item, index) => {
           return (
-            <div className="masonry-item w-1/4 p-2" key={index}>
+            <div className="masonry-item w-1/2 lg:w-1/4 p-2" key={index}>
               <div className="rounded-lg shadow-lg relative overflow-hidden group">
                 <Link to={"#"}>
                   <img className="rounded-lg w-full" src={item.image} alt="" />

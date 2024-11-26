@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import React, { createContext, Suspense } from "react";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import SearchJobs from "./pages/SearchJobs/SearchJobs";
+import Product from "./pages/Product/Product";
+import SignUp from "./pages/SignUp/SignUp";
 
 export const NotificationContext = createContext();
 
@@ -40,11 +42,19 @@ const arrRoutes = [
         path: "/search-jobs",
         element: <SearchJobs />,
       },
+      {
+        path: "/product",
+        element: <Product />,
+      },
     ],
   },
   {
     path: pathDefault.signIn,
     element: <SignIn />,
+  },
+  {
+    path: pathDefault.signUp,
+    element: <SignUp />,
   },
   {
     path: pathDefault.admin,
@@ -74,7 +84,7 @@ const arrRoutes = [
       {
         path: "manager-comment",
         element: (
-          <Suspense fallback={<div>huhu</div>}>
+          <Suspense fallback={<></>}>
             <ManagerComment />
           </Suspense>
         ),

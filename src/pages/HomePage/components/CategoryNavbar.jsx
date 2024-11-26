@@ -3,11 +3,18 @@ import { listCategories } from "../../../common/constant";
 
 const CategoryNavbar = () => {
   return (
-    <nav className="border-b border-gray-200">
-      <div className="container py-2 border-b border-gray-300">
-        <ul className="flex space-x-8 text-[#62646a] font-semibold">
+    <nav className="hidden lg:block border-b border-gray-200">
+      <div className="container border-b border-gray-200">
+        <ul className="flex justify-between space-x-8 text-[#62646a]">
           {listCategories.map((item, index) => {
-            return <li key={index}>{item.title}</li>;
+            return (
+              <li
+                className="border-b-2 border-transparent cursor-pointer hover:border-b-green-500 py-2 transition-all duration-300 "
+                key={index}
+              >
+                {item.title}
+              </li>
+            );
           })}
         </ul>
       </div>
