@@ -28,7 +28,7 @@ const BannerHomePage = () => {
   }, [value]);
   return (
     <div>
-      <div className="bg-gradient-to-t from-[#3d774c] to-[#003912] lg:bg-banner-homepage lg:h-[500px] w-full bg-no-repeat bg-center bg-cover rounded-none lg:rounded-2xl relative">
+      <div className="bg-gradient-to-t from-[#3d774c] to-[#003912] lg:bg-[url(/banner.png)] lg:h-[500px] w-full bg-no-repeat bg-center bg-cover rounded-none lg:rounded-2xl relative">
         <div className="flex flex-col justify-center h-full items-center gap-10 py-10 px-5">
           <h1 className="text-white text-3xl lg:text-6xl tracking-tight leading-[69px] max-w-[800px] text-center">
             Scale your professional workforce with{" "}
