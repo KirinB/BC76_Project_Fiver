@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import React from "react";
 
-const InputCustom = ({
+export const InputCustom = ({
   labelContent,
   placeholder,
   handleChange,
@@ -15,7 +15,7 @@ const InputCustom = ({
 }) => {
   return (
     <div className="space-y-1">
-      <label htmlFor={id} className="font-medium">
+      <label htmlFor={id} className="font-medium text-sm">
         {labelContent}
       </label>
       <Input
@@ -27,9 +27,40 @@ const InputCustom = ({
         placeholder={placeholder}
         type={type}
       />
-      {touched && error ? <p className="text-red-500 mt-1">{error}</p> : null}
+      {touched && error ? (
+        <p className="text-red-500 mt-1 text-sm">{error}</p>
+      ) : null}
     </div>
   );
 };
 
-export default InputCustom;
+export const InputPasswordCustom = ({
+  labelContent,
+  placeholder,
+  handleChange,
+  handleBlur,
+  name,
+  id,
+  value,
+  error,
+  touched,
+}) => {
+  return (
+    <div className="space-y-1">
+      <label htmlFor={id} className="font-medium text-sm">
+        {labelContent}
+      </label>
+      <Input.Password
+        value={value}
+        name={name}
+        id={id}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        placeholder={placeholder}
+      />
+      {touched && error ? (
+        <p className="text-red-500 mt-1 text-sm">{error}</p>
+      ) : null}
+    </div>
+  );
+};

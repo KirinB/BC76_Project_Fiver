@@ -22,21 +22,21 @@ const dataJoinNow = [
 
 const JoinSectionHomePage = () => {
   return (
-    <div>
-      <h2 className="text-5xl mb-16 text-blackSecond">
+    <div className="px-6 lg:px-0">
+      <h2 className="text-4xl lg:text-5xl mb-16 text-blackSecond">
         Make it all happen with freelancers
       </h2>
-      <div className="grid grid-cols-4 mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-4 mb-16 space-y-10 lg:space-y-0">
         {dataJoinNow.map((item, index) => {
           return (
-            <div className="flex flex-col gap-3" key={index}>
+            <div className="flex lg:flex-col gap-3" key={index}>
               <img className="w-16" src={item.img} alt="" />
               <p className="max-w-[232px]">{item.title}</p>
             </div>
           );
         })}
       </div>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex lg:justify-center">
         <ButtonPrimary content="Join now" />
       </div>
     </div>

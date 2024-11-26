@@ -8,6 +8,7 @@ import React, { createContext, Suspense } from "react";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import SearchJobs from "./pages/SearchJobs/SearchJobs";
 import Product from "./pages/Product/Product";
+import SignUp from "./pages/SignUp/SignUp";
 
 export const NotificationContext = createContext();
 
@@ -52,6 +53,10 @@ const arrRoutes = [
     element: <SignIn />,
   },
   {
+    path: pathDefault.signUp,
+    element: <SignUp />,
+  },
+  {
     path: pathDefault.admin,
     element: <AdminTemplate />,
     children: [
@@ -79,7 +84,7 @@ const arrRoutes = [
       {
         path: "manager-comment",
         element: (
-          <Suspense fallback={<div>huhu</div>}>
+          <Suspense fallback={<></>}>
             <ManagerComment />
           </Suspense>
         ),

@@ -7,13 +7,15 @@ const InputSearch = ({
   value,
   handleChange,
   handleClick,
+  className,
+
   onSearch = () => {},
 }) => {
   return (
     <Input.Search
       onClick={handleClick}
       onChange={handleChange}
-      className="input_search"
+      className={`input_search ${className}`}
       onSearch={onSearch}
       placeholder={placeholder}
     />

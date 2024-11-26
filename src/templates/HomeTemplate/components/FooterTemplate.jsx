@@ -12,6 +12,9 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { PiPersonArmsSpreadFill } from "react-icons/pi";
+import useViewPort from "../../../hooks/useViewPort";
+import { Collapse } from "antd";
+import "./FooterTemplate.scss";
 
 const dataFooter = [
   {
@@ -182,6 +185,17 @@ const dataFooter = [
     ],
   },
 ];
+
+const dataFooterMobile = dataFooter.map((item, index) => ({
+  key: (index + 1).toString(),
+  label: <p className="font-semibold text-base">{item.title}</p>,
+  children: item.data.map((child, index) => (
+    <Link key={index} className="block pb-4 text-base text-[#74767e]">
+      {child.title}
+    </Link>
+  )),
+}));
+
 const dataSocials = [
   {
     icon: <FaTiktok />,
@@ -204,10 +218,62 @@ const dataSocials = [
 ];
 
 const FooterTemplate = () => {
-  return (
+  const { width } = useViewPort();
+  return width < 768 ? (
+    //Footer Mobile
+    <footer className="border-t border-gray-200 p-6">
+      <div className="pb-4 border-b border-gray-200">
+        <Collapse items={dataFooterMobile} />
+      </div>
+      <div className="py-4">
+        <div className="flex space-y-4 flex-col items-center">
+          <div>
+            <Icons.logoR />
+          </div>
+          <p className="text-sm text-[#b5b6ba]">
+            © Fiverr International Ltd. 2024
+          </p>
+          <div className="flex space-x-4">
+            {dataSocials.map((item, index) => {
+              return (
+                <p key={index}>
+                  <ButtonGhost
+                    icon={item.icon}
+                    className="text-xl text-[#74767e] hover:text-[#74767e] hover:bg-[#DBDBDD] !rounded-full !p-2"
+                  />
+                </p>
+              );
+            })}
+          </div>
+          <div className="flex justify-center items-center">
+            <ButtonGhost
+              icon={<AiOutlineGlobal />}
+              content={"English"}
+              className={
+                "text-[#74767e] hover:text-blackSecond hover:bg-[#DBDBDD] rounded-3xl text-sm font-semibold transition-all duration-300"
+              }
+            />
+            <ButtonGhost
+              content="US$ USD"
+              className={
+                "text-[#74767e] hover:text-blackSecond hover:bg-[#DBDBDD] rounded-3xl text-sm font-semibold transition-all duration-300"
+              }
+            />
+            <div>
+              <ButtonGhost
+                icon={<PiPersonArmsSpreadFill />}
+                className="text-lg border border-[#74767e] hover:border-transparent text-[#74767e] hover:text-blackSecond hover:bg-[#DBDBDD] !rounded-full !p-1 !px-1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  ) : (
+    //Footer Table && Desktop
     <footer className="border border-t-gray-200">
       <div className="container py-10">
-        <div className="grid grid-cols-5">
+        <div className="px-8 lg:px-0 grid md:grid-cols-3 lg:grid-cols-5 gap-y-8 lg:gap-y-0">
           {dataFooter.map((item, index) => {
             return (
               <div key={index} className="space-y-5">
@@ -233,7 +299,7 @@ const FooterTemplate = () => {
           })}
         </div>
       </div>
-      <div className="container border-t border-t-gray-200 p-4 flex justify-between">
+      <div className="container border-t border-t-gray-200 p-8 lg:p-4 flex md:flex-col lg:flex-row gap-y-4 lg:justify-between">
         <div className="flex items-center space-x-6">
           <Icons.logoR />
           <span className="text-sm text-[#b5b6ba]">
@@ -267,7 +333,7 @@ const FooterTemplate = () => {
             />
             <ButtonGhost
               icon={<PiPersonArmsSpreadFill />}
-              className="text-xl border border-[#74767e] hover:border-transparent text-[#74767e] hover:text-blackSecond hover:bg-[#DBDBDD] !rounded-full !p-1 !px-2"
+              className="text-lg border border-[#74767e] hover:border-transparent text-[#74767e] hover:text-blackSecond hover:bg-[#DBDBDD] !rounded-full !p-1 !px-2"
             />
           </ul>
         </div>

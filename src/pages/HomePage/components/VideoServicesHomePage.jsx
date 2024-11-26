@@ -26,8 +26,8 @@ const dataServices = [
 const VideoServicesHomePage = () => {
   return (
     <>
-      <div>
-        <h2 className="text-5xl mb-4 text-[#404145]">
+      <div className="px-6 lg:px-0">
+        <h2 className="text-4xl lg:text-5xl mb-4 text-[#404145]">
           What success on Fiverr looks like
         </h2>
         <p className="text-[#62646A] mb-10">
@@ -38,11 +38,11 @@ const VideoServicesHomePage = () => {
           <source src="/Vontelle.mp4"></source>
         </video>
       </div>
-      <div>
-        <h3 className="text-3xl mb-8 text-blackSecond">
+      <div className="px-6 lg:px-0">
+        <h3 className="text-2xl lg:text-3xl mb-8 text-blackSecond">
           Vontélle's go-to services
         </h3>
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {dataServices.map((item, index) => {
             return (
               <div className="px-[14px] py-3" key={index}>
