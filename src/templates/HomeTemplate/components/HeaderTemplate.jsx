@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import Icons from "../../../components/icon";
+import Icons from "../../../components/Icons";
 import { Link, useNavigate } from "react-router-dom";
 import { pathDefault } from "../../../common/path";
 import {

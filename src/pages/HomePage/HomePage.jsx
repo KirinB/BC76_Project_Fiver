@@ -4,7 +4,7 @@ import PopularServices from "./components/PopularServices";
 import PremiumHomePage from "./components/PremiumHomePage";
 import VideoServicesHomePage from "./components/VideoServicesHomePage";
 import JoinSectionHomePage from "./components/JoinSectionHomePage";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { dataPremium } from "../../common/constant";
 import MadeOnFiverr from "./components/MadeOnFiverr";
 import GuidesHomePage from "./components/GuidesHomePage";

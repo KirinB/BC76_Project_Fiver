@@ -1,5 +1,5 @@
 import React from "react";
-import Icons from "../../../components/icon";
+import Icons from "../../../components/Icons";
 import { dataPremium } from "../../../common/constant";
 import { ButtonPrimary } from "../../../components/button/ButtonCustom";
 
