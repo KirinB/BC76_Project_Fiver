@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Icons from "../../../components/icon";
+import Icons from "../../../components/Icons";
 import { ButtonGhost } from "../../../components/button/ButtonCustom";
 import {
   FaFacebook,

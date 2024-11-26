@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InputSearch from "../../../components/input/inputSearch/InputSearch";
 import CategoryHomePage from "./CategoryHomePage";
-import Icons from "../../../components/icon";
+import Icons from "../../../components/Icons";
 import { listCategories } from "../../../common/constant";
 import { useDebounce } from "use-debounce";
 import { useNavigate } from "react-router-dom";

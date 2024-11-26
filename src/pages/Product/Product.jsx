@@ -15,7 +15,7 @@ import {
 } from "../../components/button/ButtonCustom";
 import { GoShareAndroid } from "react-icons/go";
 import { nguoiDungService } from "../../services/nguoiDung.service";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { mockUpComment } from "../../common/constant";
 import ItemSearchJob from "../SearchJobs/ItemSearchJob";

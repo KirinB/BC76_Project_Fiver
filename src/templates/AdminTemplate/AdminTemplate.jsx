@@ -7,7 +7,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { pathDefault } from "../../common/path";
 const { Header, Sider, Content } = Layout;

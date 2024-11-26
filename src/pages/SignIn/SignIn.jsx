@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import {
   InputCustom,
   InputPasswordCustom,

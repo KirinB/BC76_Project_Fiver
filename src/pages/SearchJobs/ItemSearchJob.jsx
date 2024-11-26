@@ -1,6 +1,6 @@
 import React from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { Tooltip } from "antd";
 import { Link } from "react-router-dom";
 
