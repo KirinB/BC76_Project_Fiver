@@ -90,7 +90,7 @@ const HeaderTemplate = () => {
 
   return (
     <>
-      <header className="py-4 border-b border-b-gray-200">
+      <header className="py-4 border-b border-b-gray-200 fixed z-40 bg-white w-full shadow-sm">
         <div className="container">
           <div className="flex justify-between items-center gap-4 px-4 lg:px-0">
             <div
@@ -183,13 +183,136 @@ const HeaderTemplate = () => {
             </div>
             <div className="hidden lg:block">
               <div className="space-x-3 flex items-center">
-                <DropdownCustom buttonContent="Fiverr Pro" />
-                <DropdownCustom buttonContent="Explore" />
+                <DropdownCustom
+                  buttonContent="Fiverr Pro"
+                  className="font-semibold !text-[#222325]"
+                  items={[
+                    {
+                      label: (
+                        <div className="px-4 py-2 border rounded-lg">
+                          <div className="flex gap-4">
+                            <div className="flex items-center justify-center">
+                              <img src="/hire-freelancer.svg" />
+                            </div>
+                            <div className="max-w-[280px]">
+                              <h2 className="text-[#404145] font-semibold text-base">
+                                I'm looking to hire
+                              </h2>
+                              <p className="text-[#62646a]">
+                                My team needs vetted freelance talent and a
+                                premium business solution.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="px-4 py-2 border rounded-lg">
+                          <div className="flex gap-4">
+                            <div className="flex items-center justify-center">
+                              <img src="/iam-freelancer.svg" />
+                            </div>
+                            <div className="max-w-[280px]">
+                              <h2 className="text-[#404145] font-semibold text-base">
+                                I want to offer Pro services
+                              </h2>
+                              <p className="text-[#62646a]">
+                                I'd like to work on business projects as a Pro
+                                freelancer or agency.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
+                <DropdownCustom
+                  buttonContent="Explore"
+                  items={[
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">Answers</h1>
+                          <p className="#62646a">
+                            Powered by AI, answered by Fiverr freelancers
+                          </p>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">Community</h1>
+                          <p className="#62646a">
+                            Connect with Fiverr's team and community
+                          </p>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">Guides</h1>
+                          <p className="#62646a">
+                            In-depth guides covering bsiness topics
+                          </p>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">Podcast</h1>
+                          <p className="#62646a">
+                            Inside tips from top business minds
+                          </p>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">Learn</h1>
+                          <p className="#62646a">
+                            Professional online courses, led by experts
+                          </p>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">Blog</h1>
+                          <p className="#62646a">
+                            News, information and community stories
+                          </p>
+                        </div>
+                      ),
+                    },
+                    {
+                      label: (
+                        <div className="py-1">
+                          <h1 className="font-semibold text-base">
+                            Logo Maker
+                          </h1>
+                          <p className="#62646a">Create your logo instantly</p>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
                 <ButtonGhost
                   content={"English"}
+                  className={"text-[#62646a]"}
                   icon={<AiOutlineGlobal />}
                 ></ButtonGhost>
-                <ButtonGhost content={"Become a Seller"}></ButtonGhost>
+                <ButtonGhost
+                  content={"Become a Seller"}
+                  className={"text-[#62646a]"}
+                ></ButtonGhost>
                 {!user ? (
                   <>
                     {" "}
@@ -197,6 +320,7 @@ const HeaderTemplate = () => {
                       onClick={() => {
                         navigate(pathDefault.signIn);
                       }}
+                      className={"text-[#62646a]"}
                       content={"Sign in"}
                     ></ButtonGhost>
                     <ButtonOutline
@@ -293,11 +417,18 @@ const HeaderTemplate = () => {
                   Home
                 </Link>
                 <DropdownCustom
-                  buttonContent="Explore"
+                  buttonContent={
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>English</span>
+                      <span>
+                        <AiOutlineGlobal />
+                      </span>
+                    </span>
+                  }
                   className="w-full flex justify-between !p-0 !font-medium !text-[#62646a]"
                 />
                 <DropdownCustom
-                  buttonContent="Explore"
+                  buttonContent="US$ USD"
                   className="w-full flex justify-between !p-0 !font-medium !text-[#62646a]"
                 />
                 <p className="text-[#62646a] font-medium">Open in App</p>

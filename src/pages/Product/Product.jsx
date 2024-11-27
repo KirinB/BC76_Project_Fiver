@@ -278,7 +278,7 @@ const Product = () => {
                   </div>
                 </div>
               </div>
-              <aside className="hidden lg:block w-1/3 mx-20 h-full sticky right-0 top-10 space-y-4">
+              <aside className="hidden lg:block w-1/3 mx-20 h-full sticky right-0 top-28 space-y-4">
                 <div className="border border-gray-200 pt-8 px-6 space-y-4">
                   <div>
                     <h1 className="text-xl font-semibold">Basic</h1>

@@ -3,21 +3,25 @@ import React, { useState } from "react";
 import { DownOutlined, SmileOutlined } from "@ant-design/icons";
 const DropdownCustom = ({
   buttonContent = "dropdown",
-  items,
+  items = [{ label: "The function is not working yet" }],
   className = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const handleOpenChange = (flag) => {
+    setIsOpen(flag);
+  };
   return (
     <Dropdown
-      menu={{ items: [{ label: "The function is not working yet" }] }}
+      menu={{ items: items }}
       trigger={["click"]}
       open={isOpen}
+      onOpenChange={handleOpenChange}
     >
       <button
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-        className={`font-semibold capitalize py-2 px-4 hover:bg-gray-100 rounded-md ${className}`}
+        className={`text-[#62646a] capitalize py-2 px-4 hover:bg-gray-100 rounded-md ${className}`}
       >
         {buttonContent}
         <span className="ml-2">
