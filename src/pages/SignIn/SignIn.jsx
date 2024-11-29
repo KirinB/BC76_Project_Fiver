@@ -34,7 +34,6 @@ const SignIn = () => {
         authService
           .signIn(values)
           .then((res) => {
-            clg;
             localStorage.setItem("userInfo", JSON.stringify(res.data.content));
             handleNotification("success", "Đăng nhập thành công", 1500);
             dispatch(handleUpdateUser(res.data.content.user));
