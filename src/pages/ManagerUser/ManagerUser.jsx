@@ -18,7 +18,6 @@ import FormAddUser from "./components/FormAddUser/FormAddUser";
 
 const ManagerUser = () => {
   const { handleNotification } = useContext(NotificationContext);
-
   const [listUser, setListUser] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

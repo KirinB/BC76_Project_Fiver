@@ -32,7 +32,9 @@ const AdminTemplate = () => {
       label: (
         <Link
           onClick={() => {
-            console.log("đăng xuất đây");
+            localStorage.removeItem("userInfo");
+            dispatch(handleUpdateUser(null));
+            window.location.href = pathDefault.homePage;
           }}
         >
           Đăng xuất
@@ -142,12 +144,22 @@ const AdminTemplate = () => {
             <div className="admin flex gap-1 items-center">
               <p>
                 Xin chào,{" "}
-                <span className="font-semibold text-lg">{user.name}</span>
+                <span className="font-semibold text-lg">
+                  {user ? user.name : null}
+                </span>
               </p>
               <Dropdown menu={{ items }}>
                 <Avatar
                   size="large"
-                  icon={user.avatar ? user.avatar : <span>{user.name[0]}</span>}
+                  icon={
+                    user ? (
+                      user.avatar ? (
+                        <img src={user.avatar} alt="" />
+                      ) : (
+                        <span>{user.name?.charAt(0)}</span>
+                      )
+                    ) : null
+                  }
                   className="mx-5"
                 />
               </Dropdown>

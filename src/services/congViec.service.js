@@ -19,4 +19,9 @@ export const congViecService = {
   putCongViec: (keyword, data, token) => {
     return http.put(`/cong-viec/${keyword}`, data, { headers: { token } });
   },
+  uploadHinhCongViec: (keyword, data, token) => {
+    return http.post(`/cong-viec/upload-hinh-cong-viec/${keyword}`, data, {
+      headers: { token },
+    });
+  },
 };
