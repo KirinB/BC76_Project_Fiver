@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import InputCustom from "../../../../components/input/inputCustom/InputCustom";
+import { InputCustom } from "../../../../components/input/inputCustom/InputCustom";
 import SelectCustom from "../../../../components/selectCustom/SelectCustom";
 import { Button, DatePicker } from "antd";
 import { useFormik } from "formik";

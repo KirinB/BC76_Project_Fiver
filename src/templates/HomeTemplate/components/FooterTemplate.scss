@@ -1,0 +1,14 @@
+.ant-collapse {
+  background-color: unset;
+  border: none;
+  border-radius: unset;
+  .ant-collapse-item {
+    border: none;
+    .ant-collapse-header {
+      flex-direction: row-reverse;
+    }
+  }
+  .ant-collapse-content {
+    border: none;
+  }
+}

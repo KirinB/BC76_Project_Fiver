@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import InputCustom from "../../components/input/inputCustom/InputCustom";
+import { InputCustom } from "../../components/input/inputCustom/InputCustom";
 import "./signInAdmin.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { ButtonGreen, ButtonIcon } from "../../components/button/ButtonCustom";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { pathDefault } from "../../common/path";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useFormik } from "formik";

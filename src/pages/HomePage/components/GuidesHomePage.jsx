@@ -11,7 +11,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -48,10 +48,12 @@ const dataGuides = [
 
 const GuidesHomePage = () => {
   return (
-    <div className="space-y-10">
+    <div className="px-6 lg:px-0 space-y-10">
       <div className="flex justify-between items-center">
-        <h2 className="text-5xl text-blackSecond">Guides to help you grow</h2>
-        <Link className=" hover:underline transition-all duration-200">
+        <h2 className="text-4xl lg:text-5xl text-blackSecond">
+          Guides to help you grow
+        </h2>
+        <Link className="hidden lg:block hover:underline transition-all duration-200">
           See more
         </Link>
       </div>
@@ -59,8 +61,8 @@ const GuidesHomePage = () => {
         {dataGuides.map((item, index) => {
           return (
             <Link key={index} to={"#"} className="group">
-              <div className="pr-8">
-                <div className="group-hover:opacity-80 transition-all duration-200 h-[330px] rounded-md mb-6">
+              <div className="md:pr-8">
+                <div className="group-hover:opacity-80 transition-all duration-200 md:h-[230px] lg:h-[330px] rounded-md mb-6">
                   <img
                     className="w-full h-full rounded-md"
                     src={item.image}
@@ -76,8 +78,8 @@ const GuidesHomePage = () => {
         })}
       </CarouselCustom>
       <div className="py-10">
-        <div className="py-12 bg-[#4D1727] rounded-xl text-white flex flex-col justify-center items-center space-y-10">
-          <h2 className="text-6xl">
+        <div className="px-10 lg:px-0 py-12 bg-[#4D1727] rounded-xl flex flex-col justify-center items-center space-y-10">
+          <h2 className="text-4xl lg:text-6xl text-white text-center lg:text-left">
             Freelance services at your{" "}
             <span className="font-domine text-[#ff7640]">fingertips</span>
           </h2>

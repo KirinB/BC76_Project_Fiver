@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import InputCustom from "../../../../components/input/inputCustom/InputCustom";
+import { InputCustom } from "../../../../components/input/inputCustom/InputCustom";
 import { useFormik } from "formik";
 import { congViecService } from "../../../../services/congViec.service";
 import { Button, Input } from "antd";
