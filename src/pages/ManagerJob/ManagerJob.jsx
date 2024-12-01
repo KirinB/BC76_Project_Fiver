@@ -152,7 +152,7 @@ const ManagerJob = () => {
       >
         Thêm công việc
       </Button>
-      <Table dataSource={listJob} columns={columns} />
+      <Table scroll={{ x: 1300 }} dataSource={listJob} columns={columns} />
       <Modal
         onCancel={() => {
           setIsModalOpen(false);

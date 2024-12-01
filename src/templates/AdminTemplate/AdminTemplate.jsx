@@ -64,9 +64,6 @@ const AdminTemplate = () => {
         collapsible
         collapsed={collapsed}
       >
-        <div className="demo-logo-vertical h-20 flex items-center justify-center">
-          <Icons.logo fill="white" />
-        </div>
         <Menu
           mode="inline"
           items={[
@@ -141,6 +138,11 @@ const AdminTemplate = () => {
                 height: 64,
               }}
             />
+
+            <Link to={pathDefault.homePage} className="inline-block ml-5">
+              <Icons.logo fill="black" />
+            </Link>
+
             <div className="admin flex gap-1 items-center">
               <p>
                 Xin chào,{" "}

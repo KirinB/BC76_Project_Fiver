@@ -13,6 +13,12 @@ import { useDispatch } from "react-redux";
 import { NotificationContext } from "../../App";
 import { handleUpdateUser } from "../../store/slice/user.slice";
 const SignInAdmin = () => {
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    if (user?.token) {
+      navigate(pathDefault.homePage);
+    }
+  }, []);
   const dispatch = useDispatch();
   const { handleNotification } = useContext(NotificationContext);
   const navigate = useNavigate();

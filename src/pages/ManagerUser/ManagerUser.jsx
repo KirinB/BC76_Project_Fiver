@@ -124,7 +124,7 @@ const ManagerUser = () => {
       >
         Thêm người dùng
       </Button>
-      <Table dataSource={listUser} columns={columns} />
+      <Table scroll={{ x: 900 }} dataSource={listUser} columns={columns} />
       <Modal
         onCancel={() => {
           setIsModalOpen(false);
