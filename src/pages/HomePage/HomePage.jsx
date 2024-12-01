@@ -4,7 +4,7 @@ import PopularServices from "./components/PopularServices";
 import PremiumHomePage from "./components/PremiumHomePage";
 import VideoServicesHomePage from "./components/VideoServicesHomePage";
 import JoinSectionHomePage from "./components/JoinSectionHomePage";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { dataPremium } from "../../common/constant";
 import MadeOnFiverr from "./components/MadeOnFiverr";
 import GuidesHomePage from "./components/GuidesHomePage";
@@ -26,7 +26,7 @@ const HomePage = () => {
         image={"/fiverr-pro.png"}
         param={
           <>
-            <div className="grid grid-cols-2 gap-5 mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-10">
               {dataPremium.map((item, index) => {
                 return (
                   <div key={index} className="text-blackSecond">
@@ -46,7 +46,7 @@ const HomePage = () => {
       <JoinSectionHomePage />
       <PremiumHomePage
         backGround="bg-[#fff6f2]"
-        styleCol1="px-10"
+        styleCol1="lg:px-10"
         logo={<Icons.logoMaker />}
         title={
           <>

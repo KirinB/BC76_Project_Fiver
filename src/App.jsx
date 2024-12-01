@@ -8,6 +8,9 @@ import React, { createContext, Suspense } from "react";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import SearchJobs from "./pages/SearchJobs/SearchJobs";
 import SignInAdmin from "./pages/SignInAdmin/SignInAdmin";
+import Product from "./pages/Product/Product";
+import SignUp from "./pages/SignUp/SignUp";
+
 export const NotificationContext = createContext();
 
 const HomeTemplate = React.lazy(() => {
@@ -40,6 +43,10 @@ const arrRoutes = [
         path: "/search-jobs",
         element: <SearchJobs />,
       },
+      {
+        path: "/product",
+        element: <Product />,
+      },
     ],
   },
   {
@@ -51,6 +58,10 @@ const arrRoutes = [
     element: <SignInAdmin />,
   },
   {
+    path: pathDefault.signUp,
+    element: <SignUp />,
+  },
+  {
     path: pathDefault.admin,
     element: <AdminTemplate />,
     children: [
@@ -58,7 +69,7 @@ const arrRoutes = [
         index: true,
         element: (
           //trong fallback de mot component loading
-          <Suspense fallback={<div>huhuhu</div>}>
+          <Suspense fallback={<></>}>
             <ManagerUser />
           </Suspense>
         ),
@@ -66,7 +77,7 @@ const arrRoutes = [
       {
         path: "manager-user",
         element: (
-          <Suspense fallback={<div>huhuhu</div>}>
+          <Suspense fallback={<></>}>
             <ManagerUser />
           </Suspense>
         ),
@@ -82,7 +93,7 @@ const arrRoutes = [
       {
         path: "manager-comment",
         element: (
-          <Suspense fallback={<div>huhu</div>}>
+          <Suspense fallback={<></>}>
             <ManagerComment />
           </Suspense>
         ),

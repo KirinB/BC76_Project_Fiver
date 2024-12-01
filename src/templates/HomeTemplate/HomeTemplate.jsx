@@ -7,6 +7,7 @@ const HomeTemplate = () => {
   return (
     <>
       <HeaderTemplate />
+      <div className="pb-[75px]"></div>
       <Outlet />
       <FooterTemplate />
     </>

@@ -19,4 +19,7 @@ export const congViecService = {
   putCongViec: (keyword, data, token) => {
     return http.put(`/cong-viec/${keyword}`, data, { headers: { token } });
   },
+  getCongViecTheoId: (id) => {
+    return http.get(`/cong-viec/${id}`);
+  },
 };

@@ -1,10 +1,11 @@
 import React from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
-import Icons from "../../components/icon";
+import Icons from "../../components/Icons";
 import { Tooltip } from "antd";
 import { Link } from "react-router-dom";
 
 const ItemSearchJob = ({
+  idProduct,
   imgBg,
   imgAuthor,
   author,
@@ -14,7 +15,10 @@ const ItemSearchJob = ({
   price,
 }) => {
   return (
-    <Link to={"/sd"} className="group flex flex-col space-y-2">
+    <Link
+      to={`/product?id=${idProduct}`}
+      className="group flex flex-col space-y-2"
+    >
       <div className="relative">
         <img className="rounded-lg shadow-md w-full" src={imgBg} alt="" />
         <Tooltip title="Save to list">
@@ -28,7 +32,7 @@ const ItemSearchJob = ({
         <span className="capitalize font-semibold">{author}</span>
       </div>
       <p className="group-hover:underline">{title}</p>
-      <p className="flex space-x-1 items-center">
+      <p className="flex space-x-1 items-baseline">
         <Icons.star />
         <strong>{star}</strong>
         <span className="text-[#74767e]">({rate})</span>

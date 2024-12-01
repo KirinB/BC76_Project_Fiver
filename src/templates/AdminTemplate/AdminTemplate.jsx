@@ -7,9 +7,9 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, Layout, Menu, theme } from "antd";
-import Icons from "../../components/icon";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Button, Layout, Menu, theme } from "antd";
+import Icons from "../../components/Icons";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { pathDefault } from "../../common/path";
 const { Header, Sider, Content } = Layout;
 import "./AdminTemplate.scss";

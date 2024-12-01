@@ -4,7 +4,7 @@ import React from "react";
 const SelectCustom = ({ labelContent, options, mode, handleChange }) => {
   return (
     <div className="space-y-1">
-      <label className="font-medium block">{labelContent}</label>
+      <label className="font-medium text-sm">{labelContent}</label>
       <Select
         onChange={handleChange}
         mode={mode && mode}

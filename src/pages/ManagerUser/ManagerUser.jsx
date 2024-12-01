@@ -1,19 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { nguoiDungService } from "../../services/nguoiDung.service";
-import {
-  Avatar,
-  Button,
-  DatePicker,
-  Input,
-  Modal,
-  Popconfirm,
-  Table,
-  Tag,
-} from "antd";
+import { Avatar, Button, Modal, Popconfirm, Table, Tag } from "antd";
 import { NotificationContext } from "../../App";
-import InputCustom from "../../components/input/inputCustom/InputCustom";
-import SelectCustom from "../../components/selectCustom/SelectCustom";
-import { skillService } from "../../services/skill.service";
 import FormAddUser from "./components/FormAddUser/FormAddUser";
 
 const ManagerUser = () => {
