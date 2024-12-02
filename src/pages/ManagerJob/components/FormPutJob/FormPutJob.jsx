@@ -41,7 +41,7 @@ const FormAddJob = ({
           handleCloseModal();
         })
         .catch((err) => {
-          console.log(err);
+          handleNotification("error", err.response.data.content);
         });
     },
     validationSchema: Yup.object({

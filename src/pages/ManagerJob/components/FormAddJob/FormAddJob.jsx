@@ -46,7 +46,7 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
           handleNotification("success", "Thêm công việc thành công");
         })
         .catch((err) => {
-          console.log(err);
+          handleNotification("error", err.response.data.content);
         });
     },
     validationSchema: Yup.object({

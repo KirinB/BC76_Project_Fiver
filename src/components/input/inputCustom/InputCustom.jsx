@@ -13,6 +13,7 @@ export const InputCustom = ({
   touched,
   type = "text",
   className = "",
+  readOnly = false,
 }) => {
   return (
     <div className="space-y-1">
@@ -28,6 +29,7 @@ export const InputCustom = ({
         onChange={handleChange}
         placeholder={placeholder}
         type={type}
+        readOnly={readOnly}
       />
       {touched && error ? (
         <p className="text-red-500 mt-1 text-sm">{error}</p>

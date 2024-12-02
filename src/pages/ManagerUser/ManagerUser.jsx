@@ -3,12 +3,12 @@ import { nguoiDungService } from "../../services/nguoiDung.service";
 import { Avatar, Button, Modal, Popconfirm, Table, Tag } from "antd";
 import { NotificationContext } from "../../App";
 import FormAddUser from "./components/FormAddUser/FormAddUser";
-
+import FormPutUser from "./components/FormPutUser/FormPutUser";
 const ManagerUser = () => {
   const { handleNotification } = useContext(NotificationContext);
   const [listUser, setListUser] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
   const layDanhSachNguoiDung = () => {
     nguoiDungService
       .layDanhSachNguoiDung()
@@ -24,7 +24,18 @@ const ManagerUser = () => {
         console.log(err);
       });
   };
-
+  const [initialValues, setInitialValues] = useState({
+    id: 0,
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    birthday: "",
+    gender: true,
+    role: "",
+    skill: [],
+    certification: [],
+  });
   const columns = [
     {
       title: "ID",
@@ -99,7 +110,23 @@ const ManagerUser = () => {
             >
               <Button danger>Xóa</Button>
             </Popconfirm>
-            <Button className="border-yellow-500 text-yellow-500">Sửa</Button>
+            <Button
+              className="border-yellow-500 text-yellow-500"
+              onClick={() => {
+                setIsModalOpen2(true);
+                nguoiDungService
+                  .getNguoiDungById(record.id)
+                  .then((res) => {
+                    setInitialValues(res.data.content);
+                    console.log(res.data.content);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+            >
+              Sửa
+            </Button>
           </div>
         );
       },
@@ -137,6 +164,22 @@ const ManagerUser = () => {
           handleCloseModal={() => {
             setIsModalOpen(false);
           }}
+          layDanhSachNguoiDung={layDanhSachNguoiDung}
+        />
+      </Modal>
+      <Modal
+        onCancel={() => {
+          setIsModalOpen2(false);
+        }}
+        footer={null}
+        title="Sửa người dùng"
+        open={isModalOpen2}
+      >
+        <FormPutUser
+          handleCloseModal={() => {
+            setIsModalOpen2(false);
+          }}
+          initialValues={initialValues}
           layDanhSachNguoiDung={layDanhSachNguoiDung}
         />
       </Modal>

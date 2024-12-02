@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 const AdminTemplate = () => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
+  const [collapsedWidth, setCollapsedWidth] = useState(80);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -63,6 +64,16 @@ const AdminTemplate = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
+        collapsedWidth={collapsedWidth} // Chiều rộng khi collapsed
+        breakpoint="md" // Điểm breakpoint, có thể là 'xs', 'sm', 'md', 'lg', 'xl', hoặc 'xxl'
+        onBreakpoint={(broken) => {
+          if (broken) {
+            setCollapsed(true);
+            setCollapsedWidth(0);
+          } else {
+            setCollapsedWidth(80);
+          }
+        }}
       >
         <Menu
           mode="inline"
@@ -144,7 +155,7 @@ const AdminTemplate = () => {
             </Link>
 
             <div className="admin flex gap-1 items-center">
-              <p>
+              <p className="md:block hidden">
                 Xin chào,{" "}
                 <span className="font-semibold text-lg">
                   {user ? user.name : null}

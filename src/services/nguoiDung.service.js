@@ -13,4 +13,7 @@ export const nguoiDungService = {
   themNguoiDung: (data) => {
     return http.post("/users", data);
   },
+  suaNguoiDung: (id, data) => {
+    return http.put(`/users/${id}`, data);
+  },
 };

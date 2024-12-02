@@ -1,51 +1,48 @@
-import React, { useContext, useEffect, useState } from "react";
-import { InputCustom } from "../../../../components/input/inputCustom/InputCustom";
-import SelectCustom from "../../../../components/selectCustom/SelectCustom";
-import { Button, DatePicker } from "antd";
 import { useFormik } from "formik";
-import { skillService } from "../../../../services/skill.service";
+import React, { useContext, useEffect, useState } from "react";
 import { nguoiDungService } from "../../../../services/nguoiDung.service";
+import { InputCustom } from "../../../../components/input/inputCustom/InputCustom";
+import { Button, DatePicker } from "antd";
+import SelectCustom from "../../../../components/selectCustom/SelectCustom";
 import { NotificationContext } from "../../../../App";
-
-const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
+import dayjs from "dayjs";
+import { skillService } from "../../../../services/skill.service";
+const FormPutUser = ({
+  handleCloseModal,
+  initialValues,
+  layDanhSachNguoiDung,
+}) => {
   const { handleNotification } = useContext(NotificationContext);
   const [listSkill, setListSkill] = useState([]);
   const {
-    handleChange,
     handleBlur,
-    errors,
-    touched,
+    handleChange,
     handleSubmit,
     values,
     setFieldValue,
+    errors,
+    touched,
   } = useFormik({
-    initialValues: {
-      id: 0,
-      name: "",
-      email: "",
-      password: "",
-      phone: "",
-      birthday: "",
-      gender: true,
-      role: "",
-      skill: [],
-      certification: [],
-    },
+    initialValues,
+    enableReinitialize: true,
     onSubmit: (values) => {
       console.log(values);
       nguoiDungService
-        .themNguoiDung(values)
+        .suaNguoiDung(values.id, values)
         .then((res) => {
-          console.log(res);
           handleCloseModal();
           layDanhSachNguoiDung();
-          handleNotification("success", "Thêm người dùng thành công");
+          handleNotification("success", "Sửa người dùng thành công");
         })
         .catch((err) => {
           handleNotification("error", err.response.data.content);
         });
     },
   });
+  const roleOptions = [
+    { label: "Admin", value: "ADMIN" },
+    { label: "User", value: "USER" },
+  ];
   useEffect(() => {
     skillService
       .layDanhSachSkill()
@@ -56,6 +53,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
         console.log(err);
       });
   }, []);
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <InputCustom
@@ -79,6 +77,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
         touched={touched.email}
         labelContent={"Email"}
         placeholder={"Vui lòng nhập email"}
+        readOnly={true}
       />
       <InputCustom
         id="password"
@@ -91,6 +90,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
         labelContent={"Password"}
         placeholder={"Vui lòng nhập mật khẩu"}
         type="password"
+        readOnly={true}
       />
 
       <div className="grid grid-cols-2 gap-5">
@@ -106,6 +106,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
           placeholder={"Vui lòng nhập số điện thoại"}
         />
         <SelectCustom
+          value={values.role}
           handleChange={(value, option) => {
             setFieldValue("role", value);
           }}
@@ -120,6 +121,9 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
         <div className="space-y-1">
           <label className="font-medium block">Ngày sinh</label>
           <DatePicker
+            value={
+              values.birthday ? dayjs(values.birthday, "DD-MM-YYYY") : null
+            }
             onChange={(date, dateString) => {
               setFieldValue("birthday", dateString);
             }}
@@ -128,6 +132,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
           />
         </div>
         <SelectCustom
+          value={values.gender ? "Nam" : "Nữ"}
           handleChange={(value, option) => {
             setFieldValue("gender", value);
           }}
@@ -140,6 +145,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
       </div>
       <div className="grid grid-cols-2 gap-5">
         <SelectCustom
+          value={values.skill}
           handleChange={(value, option) => {
             setFieldValue("skill", value);
           }}
@@ -153,6 +159,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
           })}
         />
         <SelectCustom
+          value={values.certification}
           handleChange={(value, option) => {
             setFieldValue("certification", value);
           }}
@@ -173,4 +180,4 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
   );
 };
 
-export default FormAddUser;
+export default FormPutUser;

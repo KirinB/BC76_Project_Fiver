@@ -123,7 +123,7 @@ const ManagerJob = () => {
                     console.log(initialValues);
                   })
                   .catch((err) => {
-                    console.log(err);
+                    handleNotification("error", err.response.data.content);
                   });
               }}
               className="border-yellow-500 text-yellow-500"
