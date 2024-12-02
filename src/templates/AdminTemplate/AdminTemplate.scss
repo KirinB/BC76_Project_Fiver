@@ -20,8 +20,17 @@
         @apply text-white;
       }
     }
+    .ant-menu-item {
+      padding: 0 !important;
+      text-align: center;
+    }
   }
   .ant-menu-item-selected {
     background-color: unset;
+  }
+}
+.ant-layout-header {
+  .item_active {
+    background-color: cornflowerblue;
   }
 }

@@ -14,11 +14,22 @@ import { pathDefault } from "../../common/path";
 const { Header, Sider, Content } = Layout;
 import "./AdminTemplate.scss";
 import { useSelector } from "react-redux";
-
+import useViewPort from "../../hooks/useViewPort";
+import { FaBars, FaFacebookF } from "react-icons/fa";
+import { isPending } from "@reduxjs/toolkit";
 const AdminTemplate = () => {
+  const { width } = useViewPort();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
-  const [collapsedWidth, setCollapsedWidth] = useState(80);
+  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  const [collapsedWidth, setCollapsedWidth] = useState(50);
+  const handleOpenBar = () => {
+    setOverlayVisible(true);
+  };
+
+  const handleCloseBar = () => {
+    setOverlayVisible(false);
+  };
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -58,79 +69,81 @@ const AdminTemplate = () => {
   }, []);
   return (
     <Layout className="min-h-screen">
-      <Sider
-        width={250}
-        className="bg-slate-800 slider-content"
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        collapsedWidth={collapsedWidth} // Chiều rộng khi collapsed
-        breakpoint="md" // Điểm breakpoint, có thể là 'xs', 'sm', 'md', 'lg', 'xl', hoặc 'xxl'
-        onBreakpoint={(broken) => {
-          if (broken) {
-            setCollapsed(true);
-            setCollapsedWidth(0);
-          } else {
-            setCollapsedWidth(80);
-          }
-        }}
-      >
-        <Menu
-          mode="inline"
-          items={[
-            {
-              key: "1",
-              label: (
-                <NavLink
-                  className={({ isActive, isPending }) => {
-                    return `px-3 rounded-md inline-block ${
-                      isActive || location.pathname == "/admin"
-                        ? "item-active"
-                        : ""
-                    }`;
-                  }}
-                  to={pathDefault.managerUser}
-                >
-                  <UserOutlined />
-                  <span>Danh sách người dùng</span>
-                </NavLink>
-              ),
-            },
-            {
-              key: "2",
-              label: (
-                <NavLink
-                  className={({ isActive, isPending }) => {
-                    return `px-3 rounded-md inline-block ${
-                      isActive ? "item-active" : ""
-                    }`;
-                  }}
-                  to={pathDefault.managerJob}
-                >
-                  <VideoCameraOutlined />
-                  <span>Danh sách công việc</span>
-                </NavLink>
-              ),
-            },
-            {
-              key: "3",
-              label: (
-                <NavLink
-                  className={({ isActive, isPending }) => {
-                    return `px-3 rounded-md inline-block ${
-                      isActive ? "item-active" : ""
-                    }`;
-                  }}
-                  to={pathDefault.managerComment}
-                >
-                  <UploadOutlined />
-                  <span>Danh sách bình luận</span>
-                </NavLink>
-              ),
-            },
-          ]}
-        />
-      </Sider>
+      {width > 768 && (
+        <Sider
+          width={250}
+          className="bg-slate-800 slider-content"
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          collapsedWidth={collapsedWidth} // Chiều rộng khi collapsed
+          breakpoint="md" // Điểm breakpoint, có thể là 'xs', 'sm', 'md', 'lg', 'xl', hoặc 'xxl'
+          onBreakpoint={(broken) => {
+            if (broken) {
+              setCollapsed(true);
+              setCollapsedWidth(0);
+            } else {
+              setCollapsedWidth(50);
+            }
+          }}
+        >
+          <Menu
+            mode="inline"
+            items={[
+              {
+                key: "1",
+                label: (
+                  <NavLink
+                    className={({ isActive, isPending }) => {
+                      return `px-3 rounded-md inline-block ${
+                        isActive || location.pathname == "/admin"
+                          ? "item-active"
+                          : ""
+                      }`;
+                    }}
+                    to={pathDefault.managerUser}
+                  >
+                    <UserOutlined />
+                    <span>Danh sách người dùng</span>
+                  </NavLink>
+                ),
+              },
+              {
+                key: "2",
+                label: (
+                  <NavLink
+                    className={({ isActive, isPending }) => {
+                      return `px-3 rounded-md inline-block ${
+                        isActive ? "item-active" : ""
+                      }`;
+                    }}
+                    to={pathDefault.managerJob}
+                  >
+                    <VideoCameraOutlined />
+                    <span>Danh sách công việc</span>
+                  </NavLink>
+                ),
+              },
+              {
+                key: "3",
+                label: (
+                  <NavLink
+                    className={({ isActive, isPending }) => {
+                      return `px-3 rounded-md inline-block ${
+                        isActive ? "item-active" : ""
+                      }`;
+                    }}
+                    to={pathDefault.managerComment}
+                  >
+                    <UploadOutlined />
+                    <span>Danh sách bình luận</span>
+                  </NavLink>
+                ),
+              },
+            ]}
+          />
+        </Sider>
+      )}
       <Layout>
         <Header
           style={{
@@ -139,21 +152,89 @@ const AdminTemplate = () => {
           }}
         >
           <div className="flex justify-between items-center">
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
+            {width > 768 && (
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: "16px",
+                  width: 64,
+                  height: 64,
+                }}
+              />
+            )}
+            <div
+              className="md:hidden w-[60px]"
+              onClick={() => {
+                handleOpenBar();
               }}
-            />
+            >
+              <FaBars size={20} className="ml-5" />
+            </div>
+            {isOverlayVisible && (
+              <div className="fixed inset-0 z-50 lg:hidden">
+                {/* Backdrop */}
+                <div
+                  className="absolute inset-0 bg-black opacity-50"
+                  onClick={handleCloseBar}
+                ></div>
 
-            <Link to={pathDefault.homePage} className="inline-block ml-5">
-              <Icons.logo fill="black" />
-            </Link>
-
+                {/* Overlay */}
+                <div
+                  className={`absolute top-0 left-0 w-2/4 md:w-1/3 h-full bg-slate-800 text-white font-medium md:text-lg  sm:text-base text-sm transform transition-transform texmotion-preset-slide-right  ${
+                    isOverlayVisible ? "translate-x-0" : "-translate-x-full"
+                  }`}
+                  onClick={(e) => e.stopPropagation()} // Ngăn sự kiện click lan ra backdrop
+                >
+                  <div className="p-6 h-full flex flex-col space-y-6 navbar text-center">
+                    <Link
+                      className="flex justify-center"
+                      to={pathDefault.homePage}
+                    >
+                      <Icons.logo fill="white" />
+                    </Link>
+                    <NavLink
+                      className={({ isActive, isPending }) => {
+                        return `p-2 rounded-md inline-block hover:text-white ${
+                          isActive || location.pathname == "/admin"
+                            ? "item_active"
+                            : ""
+                        }`;
+                      }}
+                      to={pathDefault.managerUser}
+                    >
+                      <span>Danh sách người dùng</span>
+                    </NavLink>
+                    <NavLink
+                      className={({ isActive, isPending }) => {
+                        return `p-2 rounded-md inline-block hover:text-white ${
+                          isActive ? "item_active" : ""
+                        }`;
+                      }}
+                      to={pathDefault.managerJob}
+                    >
+                      <span>Danh sách công việc</span>
+                    </NavLink>
+                    <NavLink
+                      className={({ isActive, isPending }) => {
+                        return `p-2 rounded-md inline-block hover:text-white ${
+                          isActive ? "item_active" : ""
+                        }`;
+                      }}
+                      to={pathDefault.managerComment}
+                    >
+                      <span>Danh sách bình luận</span>
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div>
+              <Link>
+                <Icons.logo />
+              </Link>
+            </div>
             <div className="admin flex gap-1 items-center">
               <p className="md:block hidden">
                 Xin chào,{" "}
