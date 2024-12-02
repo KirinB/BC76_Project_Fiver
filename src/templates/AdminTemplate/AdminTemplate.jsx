@@ -48,7 +48,7 @@ const AdminTemplate = () => {
     const dataString = localStorage.getItem("userInfo");
     if (!dataString) {
       //neu chua dang nhap thi chuyen huong ve trang login
-      window.location.href = pathDefault.signIn;
+      window.location.href = pathDefault.signInAdmin;
     } else {
       const data = JSON.parse(dataString);
       if (data.user.role !== "ADMIN") {
