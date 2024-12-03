@@ -77,7 +77,7 @@ const AdminTemplate = () => {
           collapsible
           collapsed={collapsed}
           collapsedWidth={collapsedWidth} // Chiều rộng khi collapsed
-          breakpoint="md" // Điểm breakpoint, có thể là 'xs', 'sm', 'md', 'lg', 'xl', hoặc 'xxl'
+          breakpoint="md"
           onBreakpoint={(broken) => {
             if (broken) {
               setCollapsed(true);
@@ -91,7 +91,9 @@ const AdminTemplate = () => {
             className={`flex justify-center ${collapsed ? "py-5" : "py-10"}`}
           >
             {collapsed ? (
-              <FaFacebookF size={30} fill="white" />
+              <Link to={pathDefault.homePage}>
+                <FaFacebookF size={30} fill="white" />
+              </Link>
             ) : (
               <Icons.logo fill="white" />
             )}
@@ -263,7 +265,8 @@ const AdminTemplate = () => {
                       )
                     ) : null
                   }
-                  className="mx-5"
+                  style={{ backgroundColor: "#fde3cf", color: "#f56a00" }}
+                  className="mx-5 uppercase"
                 />
               </Dropdown>
             </div>
