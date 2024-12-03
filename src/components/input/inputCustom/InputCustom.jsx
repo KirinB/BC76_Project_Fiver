@@ -21,7 +21,7 @@ export const InputCustom = ({
         {labelContent}
       </label>
       <Input
-        className={`${className} py-2`}
+        className={`${className}`}
         value={value}
         name={name}
         id={id}

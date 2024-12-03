@@ -69,7 +69,7 @@ const AdminTemplate = () => {
   }, []);
   return (
     <Layout className="min-h-screen">
-      {width > 768 && (
+      {width >= 768 && (
         <Sider
           width={250}
           className="bg-slate-800 slider-content"
@@ -87,6 +87,15 @@ const AdminTemplate = () => {
             }
           }}
         >
+          <div
+            className={`flex justify-center ${collapsed ? "py-5" : "py-10"}`}
+          >
+            {collapsed ? (
+              <FaFacebookF size={30} fill="white" />
+            ) : (
+              <Icons.logo fill="white" />
+            )}
+          </div>
           <Menu
             mode="inline"
             items={[
@@ -151,8 +160,8 @@ const AdminTemplate = () => {
             background: colorBgContainer,
           }}
         >
-          <div className="flex justify-between items-center">
-            {width > 768 && (
+          <div className="flex h-full justify-between items-center">
+            {width >= 768 && (
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -182,7 +191,7 @@ const AdminTemplate = () => {
 
                 {/* Overlay */}
                 <div
-                  className={`absolute top-0 left-0 w-2/4 md:w-1/3 h-full bg-slate-800 text-white font-medium md:text-lg  sm:text-base text-sm transform transition-transform texmotion-preset-slide-right  ${
+                  className={`absolute top-0 left-0 w-3/4 md:w-1/3 h-full bg-slate-800 text-white font-medium md:text-lg  sm:text-base text-sm transform transition-transform texmotion-preset-slide-right  ${
                     isOverlayVisible ? "translate-x-0" : "-translate-x-full"
                   }`}
                   onClick={(e) => e.stopPropagation()} // Ngăn sự kiện click lan ra backdrop

@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { skillService } from "../../../../services/skill.service";
 import { nguoiDungService } from "../../../../services/nguoiDung.service";
 import { NotificationContext } from "../../../../App";
+import * as Yup from "yup";
 
 const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
   const { handleNotification } = useContext(NotificationContext);
@@ -26,7 +27,7 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
       password: "",
       phone: "",
       birthday: "",
-      gender: true,
+      gender: "",
       role: "",
       skill: [],
       certification: [],
@@ -45,6 +46,29 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
           handleNotification("error", err.response.data.content);
         });
     },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Vui lòng không bỏ trống !"),
+      email: Yup.string()
+        .required("Vui lòng không bỏ trống !")
+        .email("Vui lòng nhập đúng định dạng email !"),
+      password: Yup.string()
+        .required("Vui lòng không bỏ trống !")
+        .matches(
+          /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).*$/,
+          "Vui lòng nhập 1 ký tự đặc biệt, 1 in hoa, 1 số"
+        ),
+      phone: Yup.string()
+        .required("Vui lòng không bỏ trống !")
+        .matches(
+          /^(0(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5]|9[0-9])\d{7})$/,
+          "Vui lòng nhập đúng định dạng số điện thoại Việt Nam"
+        ),
+      role: Yup.string().required("Vui lòng không bỏ trống !"),
+      birthday: Yup.string().required("Vui lòng không bỏ trống !"),
+      gender: Yup.string().required("Vui lòng không bỏ trống !"),
+      skill: Yup.array().min(1, "Vui lòng không bỏ trống !"),
+      certification: Yup.array().min(1, "Vui lòng không bỏ trống !"),
+    }),
   });
   useEffect(() => {
     skillService
@@ -114,6 +138,8 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
             { label: "Admin", value: "ADMIN" },
             { label: "User", value: "USER" },
           ]}
+          error={errors.role}
+          touched={touched.role}
         />
       </div>
       <div className="grid grid-cols-2 gap-5">
@@ -126,6 +152,9 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
             format="DD-MM-YYYY"
             className="w-full"
           />
+          {errors.birthday && touched.birthday && (
+            <p className="text-red-500 text-sm">{errors.birthday}</p>
+          )}
         </div>
         <SelectCustom
           handleChange={(value, option) => {
@@ -136,6 +165,8 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
             { label: "Nam", value: true },
             { label: "Nữ", value: false },
           ]}
+          error={errors.gender}
+          touched={touched.gender}
         />
       </div>
       <div className="grid grid-cols-2 gap-5">
@@ -151,6 +182,8 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
               value: item.id.toString(),
             };
           })}
+          error={errors.skill}
+          touched={touched.skill}
         />
         <SelectCustom
           handleChange={(value, option) => {
@@ -158,6 +191,8 @@ const FormAddUser = ({ handleCloseModal, layDanhSachNguoiDung }) => {
           }}
           mode={"tags"}
           labelContent={"Chứng chỉ"}
+          error={errors.certification}
+          touched={touched.certification}
         />
       </div>
       <div className="text-right">

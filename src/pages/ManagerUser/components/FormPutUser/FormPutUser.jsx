@@ -7,6 +7,7 @@ import SelectCustom from "../../../../components/selectCustom/SelectCustom";
 import { NotificationContext } from "../../../../App";
 import dayjs from "dayjs";
 import { skillService } from "../../../../services/skill.service";
+import * as Yup from "yup";
 const FormPutUser = ({
   handleCloseModal,
   initialValues,
@@ -38,6 +39,23 @@ const FormPutUser = ({
           handleNotification("error", err.response.data.content);
         });
     },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Vui lòng không bỏ trống !"),
+      email: Yup.string()
+        .required("Vui lòng không bỏ trống !")
+        .email("Vui lòng nhập đúng định dạng email !"),
+      phone: Yup.string()
+        .required("Vui lòng không bỏ trống !")
+        .matches(
+          /^(0(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5]|9[0-9])\d{7})$/,
+          "Vui lòng nhập đúng định dạng số điện thoại Việt Nam"
+        ),
+      role: Yup.string().required("Vui lòng không bỏ trống !"),
+      birthday: Yup.string().required("Vui lòng không bỏ trống !"),
+      gender: Yup.string().required("Vui lòng không bỏ trống !"),
+      skill: Yup.array().min(1, "Vui lòng không bỏ trống !"),
+      certification: Yup.array().min(1, "Vui lòng không bỏ trống !"),
+    }),
   });
   const roleOptions = [
     { label: "Admin", value: "ADMIN" },
@@ -77,20 +95,7 @@ const FormPutUser = ({
         touched={touched.email}
         labelContent={"Email"}
         placeholder={"Vui lòng nhập email"}
-        readOnly={true}
-      />
-      <InputCustom
-        id="password"
-        name="password"
-        value={values.password}
-        handleBlur={handleBlur}
-        handleChange={handleChange}
-        error={errors.password}
-        touched={touched.password}
-        labelContent={"Password"}
-        placeholder={"Vui lòng nhập mật khẩu"}
-        type="password"
-        readOnly={true}
+        // readOnly={true}
       />
 
       <div className="grid grid-cols-2 gap-5">
@@ -115,6 +120,8 @@ const FormPutUser = ({
             { label: "Admin", value: "ADMIN" },
             { label: "User", value: "USER" },
           ]}
+          error={errors.role}
+          touched={touched.role}
         />
       </div>
       <div className="grid grid-cols-2 gap-5">
@@ -130,6 +137,9 @@ const FormPutUser = ({
             format="DD-MM-YYYY"
             className="w-full"
           />
+          {errors.birthday && touched.birthday && (
+            <p className="text-red-500 text-sm">{errors.birthday}</p>
+          )}
         </div>
         <SelectCustom
           value={values.gender ? "Nam" : "Nữ"}
@@ -141,6 +151,8 @@ const FormPutUser = ({
             { label: "Nam", value: true },
             { label: "Nữ", value: false },
           ]}
+          error={errors.gender}
+          touched={touched.gender}
         />
       </div>
       <div className="grid grid-cols-2 gap-5">
@@ -157,6 +169,8 @@ const FormPutUser = ({
               value: item.id.toString(),
             };
           })}
+          error={errors.skill}
+          touched={touched.skill}
         />
         <SelectCustom
           value={values.certification}
@@ -165,6 +179,8 @@ const FormPutUser = ({
           }}
           mode={"tags"}
           labelContent={"Chứng chỉ"}
+          error={errors.certification}
+          touched={touched.certification}
         />
       </div>
       <div className="text-right">

@@ -6,9 +6,13 @@ import { Button, Input } from "antd";
 import { NotificationContext } from "../../../../App";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
+import SelectCustom from "../../../../components/selectCustom/SelectCustom";
+import { loaiCongViecService } from "../../../../services/loaiCongViec.service";
 const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
   const { handleNotification } = useContext(NotificationContext);
   const [image, setImage] = useState(null);
+  const [listDetailJobs, setListDetailJobs] = useState([]);
+  let optionsListDetailJob = [];
   const handleChangeImage = (event) => {
     const url = event.target.value.trim();
     setImage(url);
@@ -22,6 +26,7 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
     errors,
     touched,
     setFieldValue,
+    resetForm,
   } = useFormik({
     initialValues: {
       id: 0,
@@ -31,7 +36,7 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
       nguoiTao: 0,
       hinhAnh: "",
       moTa: "",
-      maChiTietLoaiCongViec: 0,
+      maChiTietLoaiCongViec: "",
       moTaNgan: "",
       saoCongViec: 0,
     },
@@ -44,6 +49,7 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
           layDanhSachCongViec();
           handleCloseModal();
           handleNotification("success", "Thêm công việc thành công");
+          resetForm();
         })
         .catch((err) => {
           handleNotification("error", err.response.data.content);
@@ -52,7 +58,7 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
     validationSchema: Yup.object({
       tenCongViec: Yup.string().required("Vui lòng không bỏ trống !"),
       danhGia: Yup.string().required("Vui lòng không bỏ trống !"),
-      giaTien: Yup.string().required("Vui lòng không bỏ trống !"),
+      giaTien: Yup.number().min(1, "Vui lòng không bỏ trống !"),
       moTa: Yup.string().required("Vui lòng không bỏ trống !"),
       moTaNgan: Yup.string().required("Vui lòng không bỏ trống !"),
       maChiTietLoaiCongViec: Yup.string().required("Vui lòng không bỏ trống !"),
@@ -63,6 +69,23 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
       hinhAnh: Yup.string().required("Vui lòng không bỏ trống !"),
     }),
   });
+
+  useEffect(() => {
+    loaiCongViecService
+      .getListChiTietLoaiCongViec()
+      .then((res) => {
+        console.log(res.data.content);
+
+        const options = res.data.content.map((item) => ({
+          value: item.id,
+          label: item.tenLoaiCongViec,
+        }));
+        setListDetailJobs(options);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // tạo đối tượng để đọc files
 
@@ -101,34 +124,36 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
         labelContent={"Short Discription"}
         placeholder={"Vui lòng nhập mô tả ngắn"}
       />
-      <InputCustom
-        id="giaTien"
-        name="giaTien"
-        value={values.giaTien}
-        handleChange={handleChange}
-        handleBlur={handleBlur}
-        error={errors.giaTien}
-        touched={touched.giaTien}
-        type="number"
-        labelContent={"Price"}
-        placeholder={"Vui lòng nhập giá tiền"}
-      />
-      <InputCustom
-        id="danhGia"
-        name="danhGia"
-        value={values.danhGia}
-        handleChange={handleChange}
-        handleBlur={handleBlur}
-        error={errors.danhGia}
-        touched={touched.danhGia}
-        type="number"
-        labelContent={"Rate"}
-        placeholder={"Vui lòng nhập đánh giá"}
-      />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <InputCustom
+          id="giaTien"
+          name="giaTien"
+          value={values.giaTien}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          error={errors.giaTien}
+          touched={touched.giaTien}
+          type="number"
+          labelContent={"Price"}
+          placeholder={"Vui lòng nhập giá tiền"}
+        />
+        <InputCustom
+          id="danhGia"
+          name="danhGia"
+          value={values.danhGia}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          error={errors.danhGia}
+          touched={touched.danhGia}
+          type="number"
+          labelContent={"Rate"}
+          placeholder={"Vui lòng nhập đánh giá"}
+        />
+      </div>
 
       {/* đang chờ xử lí */}
 
-      <InputCustom
+      {/* <InputCustom
         id="maChiTietLoaiCongViec"
         name="maChiTietLoaiCongViec"
         value={values.maChiTietLoaiCongViec}
@@ -139,19 +164,31 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
         type="number"
         labelContent={"Detail Code"}
         placeholder={"Vui lòng nhập detail code"}
-      />
-      <InputCustom
-        id="saoCongViec"
-        name="saoCongViec"
-        type="number"
-        value={values.saoCongViec}
-        handleBlur={handleBlur}
-        handleChange={handleChange}
-        error={errors.saoCongViec}
-        touched={touched.saoCongViec}
-        labelContent={"Star Ratting"}
-        placeholder={"Vui lòng nhập sao công việc"}
-      />
+      /> */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <SelectCustom
+          handleChange={(value) => {
+            setFieldValue("maChiTietLoaiCongViec", value);
+          }}
+          labelContent={"Detail Code"}
+          options={listDetailJobs}
+          touched={touched.maChiTietLoaiCongViec}
+          error={errors.maChiTietLoaiCongViec}
+        />
+
+        <InputCustom
+          id="saoCongViec"
+          name="saoCongViec"
+          type="number"
+          value={values.saoCongViec}
+          handleBlur={handleBlur}
+          handleChange={handleChange}
+          error={errors.saoCongViec}
+          touched={touched.saoCongViec}
+          labelContent={"Star Ratting"}
+          placeholder={"Vui lòng nhập sao công việc"}
+        />
+      </div>
       <InputCustom
         id="hinhAnh"
         name="hinhAnh"
@@ -163,10 +200,10 @@ const FormAddJob = ({ handleCloseModal, layDanhSachCongViec, dataUser }) => {
         labelContent={"Image"}
         placeholder={"Vui lòng nhập url hình ảnh"}
       />
-      {image && (
+      {image && values.hinhAnh && (
         <div>
           <img
-            src={image}
+            src={values.hinhAnh}
             alt="Preview"
             style={{
               width: "100px",
