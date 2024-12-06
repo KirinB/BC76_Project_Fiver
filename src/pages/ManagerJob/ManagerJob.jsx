@@ -179,7 +179,7 @@ const ManagerJob = () => {
       >
         <FormPutJob
           handleCloseModal={() => {
-            setIsModalOpen(false);
+            setIsModalOpen2(false);
           }}
           initialValues={initialValues}
           layDanhSachCongViec={layDanhSachCongViec}
