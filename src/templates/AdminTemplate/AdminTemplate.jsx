@@ -95,7 +95,9 @@ const AdminTemplate = () => {
                 <FaFacebookF size={30} fill="white" />
               </Link>
             ) : (
-              <Icons.logo fill="white" />
+              <Link to={pathDefault.homePage}>
+                <Icons.logo fill="white" />
+              </Link>
             )}
           </div>
           <Menu
@@ -203,7 +205,9 @@ const AdminTemplate = () => {
                       className="flex justify-center"
                       to={pathDefault.homePage}
                     >
-                      <Icons.logo fill="white" />
+                      <Link to={pathDefault.homePage}>
+                        <Icons.logo fill="white" />
+                      </Link>
                     </Link>
                     <NavLink
                       className={({ isActive, isPending }) => {
@@ -242,7 +246,7 @@ const AdminTemplate = () => {
               </div>
             )}
             <div>
-              <Link>
+              <Link to={pathDefault.homePage}>
                 <Icons.logo />
               </Link>
             </div>
